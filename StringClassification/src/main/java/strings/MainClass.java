@@ -12,10 +12,7 @@ package strings;
 public class MainClass {
     public static void main(String[] args){
         IsLetter obj = new IsLetter();
-    if(obj.classify("sa3ra")){
-        System.out.println("True");
-    }else{
-        System.out.println("False");
-    }
+        System.out.println(obj.classify("s$3ra"));
+        System.out.println(obj.classify("saffa"));
     }
 }
