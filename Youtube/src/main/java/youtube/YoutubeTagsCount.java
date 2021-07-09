@@ -25,18 +25,18 @@ public class YoutubeTagsCount {
         }
     }
     public List<Map.Entry> tagsCounter(JavaRDD<String> data){
-        JavaRDD<String> titles = data
+        JavaRDD<String> tags = data
                 .map (YoutubeTagsCount::extractTag)
                 .filter (StringUtils::isNotBlank);
        // JavaRDD<String>
-        JavaRDD<String> words = titles.flatMap (title -> Arrays.asList (title
+        JavaRDD<String> words = tags.flatMap (title -> Arrays.asList (title
                 .toLowerCase ()
                 .trim ()
                .split ("\\|")).iterator ());
-        System.out.println(words.toString ());
+        
         // COUNTING
-        Map<String, Long> wordCounts = words.countByValue ();
-        List<Map.Entry> sorted = wordCounts.entrySet ().stream ()
+        Map<String, Long> tagCounts = words.countByValue ();
+        List<Map.Entry> sorted = tagCounts.entrySet ().stream ()
                 .sorted (Map.Entry.comparingByValue ()).collect (Collectors.toList ());
         return sorted;
     }

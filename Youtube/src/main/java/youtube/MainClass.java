@@ -26,8 +26,8 @@ public class MainClass {
         // LOAD DATASETS
         JavaRDD<String> videos = sparkContext.textFile ("src/main/resources/data/USvideos.csv");
         YoutubeTagsCount youtube = new YoutubeTagsCount();
-        List<Map.Entry> words_list = youtube.tagsCounter(videos);
-        for (Map.Entry<String, Long> entry : words_list) {
+        List<Map.Entry> tags_list = youtube.tagsCounter(videos);
+        for (Map.Entry<String, Long> entry : tags_list) {
             System.out.println (entry.getKey () + " : " + entry.getValue ());
         }
     }    
